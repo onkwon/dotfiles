@@ -1,0 +1,18 @@
+#!/bin/sh
+
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/.cscope*"' EXIT INT TERM
+{ git ls-files --recurse-submodules; \
+	git status --short | grep '^?' | awk '{ print $2 }' | xargs -I {} find {} -type f; } \
+	| grep -i \
+		-e '\.c$' \
+		-e '\.cpp$' \
+		-e '\.cc$' \
+		-e '\.h$' \
+		-e '\.hpp$' \
+		-e '\.s$' \
+		-e '\.S$' \
+		-e '\.go$' \
+		-e '\.py$' \
+		-e '\.js$' > .cscope.files
+cscope -b -q -k -R -i .cscope.files -f .cscope.out

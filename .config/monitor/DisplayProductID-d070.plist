@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>DisplayProductName</key>
+  <string>Dell U2515H (HiDPI + RGB)</string>
+  <key>IODisplayEDID</key>
+    <data>AP///////wAQrG/QTEE0MCkZAQSlNx94JkRVqVVNnSYPUFSlSwCzANEAcU+p
+QIGAd4ABAQEBVl4AoKCgKVAwIDUAKTchAAAaAAAA/wBYWFhYWFhYWFhYWFgK
+AAAA/ABERUxMIFUyNTE1SAogAAAA/QA4Vh5xHgEKICAgICAgAKM=</data>
+  <key>DisplayVendorID</key>
+  <integer>4268</integer>
+  <key>DisplayProductID</key>
+  <integer>53360</integer>
+  <key>scale-resolutions</key>
+    <array>
+    <data>AAAPAAAACHAAAAABACAAAA==</data> <!-- 3840x2160 to get 1920x1080 HiDPI -->
+    <data>AAAMgAAABwgAAAABACAAAA==</data> <!-- 3200x1800 to get 1600x900 HiDPI -->
+    <data>AAALQAAABlQAAAABACAAAA==</data> <!-- 2880x1620 to get 1440x810 HiDPI -->
+  </array>
+</dict>
+</plist>

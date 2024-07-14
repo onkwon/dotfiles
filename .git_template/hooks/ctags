@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+PATH="/usr/local/bin:$PATH"
+
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/tags.$$"' EXIT INT TERM
+{ git ls-files --recurse-submodules; \
+	git status --short | grep '^?' | awk '{ print $2 }' | xargs -I {} find {} -type f; } \
+	| ctags --tag-relative -L - -f$dir/tags.$$ --exclude=tests --exclude=tools
+mv $dir/tags.$$ $dir/tags

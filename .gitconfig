@@ -1,0 +1,41 @@
+[user]
+	name = Kyunghwan Kwon
+	email = k@mononn.com
+	signingkey = 6E38F1CD3968A241
+[core]
+	editor = nvim
+	quotepath = false
+	pager = "less -F -X"
+	excludesfile = ~/.gitignore
+[init]
+	templatedir = ~/.git_template
+	defaultBranch = main
+[fetch]
+	prune = true
+[commit]
+	gpgsign = true
+	template = ~/.git_template/commit_template.txt
+[color]
+	status = auto
+[pager]
+	branch = false
+[alias]
+	tree = "log \
+		--color --graph --decorate --all \
+		--date=format:'%Y-%m-%d' \
+		--pretty=format:'%C(cyan)%h%C(auto)%d %s %C(magenta)(%ad)%C(bold blue) %an'"
+	bselect = "! # select branch with preview; \n\
+		f() { \
+		_height=$(stty size | awk '{print $1}');\
+		git branch | egrep -v '^\\*' | fzf --preview \"git tree {1} | head -n $_height\"; \
+		}; f"
+	ch = "!git checkout $(git bselect)"
+
+	ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+	ccmds = "!sh -c '[ -f .git/hooks/cbuild ] || git init; .git/hooks/cbuild' git-ccmds"
+	cscope = "!sh -c '[ -f .git/hooks/cscope ] || git init; .git/hooks/cscope' git-cscope"
+
+	# Open all files changed since REVIEW_BASE in Vim tabs
+	# Then, run fugitive's :Gdiff in each tab, and finally
+	# tell vim-gitgutter to show +/- for changes since REVIEW_BASE
+	review = !nvim -p $(git diff --name-only $REVIEW_BASE) +\"tabdo Gvdiffsplit $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
