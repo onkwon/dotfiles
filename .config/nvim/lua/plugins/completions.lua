@@ -29,6 +29,33 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
+          ['<Tab>'] = function(fallback)
+            if not cmp.select_next_item() then
+              if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end
+          end,
+          ['<S-Tab>'] = function(fallback)
+            if not cmp.select_prev_item() then
+              if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end
+          end,
+          ['<C-o>'] = cmp.mapping(function(fallback)
+            local fallback_key = vim.api.nvim_replace_termcodes('<Tab>', true, true, true)
+            local resolved_key = vim.fn['copilot#Accept'](fallback)
+            if fallback_key == resolved_key then
+              cmp.confirm({ select = true })
+            else
+              vim.api.nvim_feedkeys(resolved_key, 'n', true)
+            end
+          end),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
