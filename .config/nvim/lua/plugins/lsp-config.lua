@@ -27,9 +27,19 @@ return {
       }
 
       for _, server in pairs(servers) do
-        lspconfig[server].setup({
-          capabilities = capabilities
-        })
+        if server == "clangd" then
+          lspconfig[server].setup({
+            capabilities = capabilities,
+            cmd = {
+              "clangd",
+              "--offset-encoding=utf-16",
+            },
+          })
+        else
+          lspconfig[server].setup({
+            capabilities = capabilities
+          })
+	end
       end
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
