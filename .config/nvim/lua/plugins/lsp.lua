@@ -24,6 +24,8 @@ return {
         "html",
         "lua_ls",
         "clangd",
+        "pylsp",
+        "gopls",
       }
 
       for _, server in pairs(servers) do
