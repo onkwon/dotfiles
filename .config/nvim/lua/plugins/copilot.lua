@@ -28,8 +28,17 @@ return {
     opts = {
       debug = true, -- Enable debugging
       prompts = prompts,
+      mappings = {
+        reset = {
+          normal = '<C-\\>',
+          insert = '<C-\\>'
+        },
+      },
+      window = {
+        layout = 'float',
+      },
     },
-    keys= {
+    keys = {
       {
         "<leader>ccq",
         function()
@@ -57,6 +66,8 @@ return {
       { "<leader>ccr", "<cmd>CopilotChatReview<cr>", mode = { "n", "v" }, desc = "CopilotChat - Review code" },
       { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", mode = { "n", "v" }, desc = "CopilotChat - Refactor code" },
       { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", mode = { "n", "v" }, desc = "CopilotChat - Better Naming" },
+      { "<leader>ccc", "<cmd>CopilotChatCommitStaged<cr>", mode = { "n", "v" }, desc = "CopilotChat - Commit Staged" },
+      { "<leader>cc", "<cmd>CopilotChatOpen<cr>", mode = { "n", "v" }, desc = "CopilotChat - Open" },
     },
   },
 }
